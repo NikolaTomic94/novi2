@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Turisticka organizacija Srbije</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="Srbija.css"/>
+          <script>
+            function rezervisi(x){
+                var iznos = document.getElementsByName("cena")[x-1].value*document.getElementsByName("kolicina")[x-1].value;
+                tipSobe= document.getElementsByName("kolicina")[x-1].value;
+                poDanu = document.getElementsByName("cena")[x-1].value;
+                alert("Iznos vase sobe po danu je = " + iznos + "; Idite na stranicu Rezervacija");
+                document.cookie = "iznos=" + poDanu + " tipSobe="+tipSobe+";"; // ovde mora da se stavi + " tipSobe", a ne + "tipSobe" mora da ima odvojeno. Muke sam mucio oko toga!
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <div id="tur">
+                    <img src="Resursi/Slike/tur.jpg" id="srbija"/>
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li><a href="#">Gradovi</a></li>
+                        <li><a href="#">Sela</a></li>
+                        <li><a href="#">Banje</a></li>
+                        <li><a href="#">Planinski centri</a></li>
+                        <li><a href="Rezervacija.html">Rezervacija</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="center">
+                <form name="forma">
+                    <table id="tabela" align="center">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><img src="Resursi/Slike/kop.jpg" id="kop"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hotel "Grand Kopaonik"</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td>
+                                            Cena:
+                                            <input type="text" value="5800.00" name="cena" disabled size="3">
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            Kolicina:
+                                            <select name="kolicina">
+                                                <option>Odaberite tip sobe</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+
+                                            </select>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" value="Rezervisi" id="buttonRezervisi" onclick="rezervisi(1)"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><img src="Resursi/Slike/tara.jpg" id="kop"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hotel "Omorika"</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td>
+                                            Cena:
+                                            <input type="text" value="9000.00" disabled size="3" name="cena">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                       
+                                        <td>
+                                            Kolicina:
+                                            <select name="kolicina">
+                                                <option>Odaberite tip sobe</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+
+                                            </select>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" value="Rezervisi" id="buttonRezervisi" onclick="rezervisi(2)"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><img src="Resursi/Slike/zlatibor.jpg" id="zlatibor"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hotel "Zlatibor"</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            Cena:
+                                            <input type="text" value="1000.00" disabled size="3" name="cena">
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            Kolicina:
+                                            <select name="kolicina">
+                                                <option>Odaberite tip sobe</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+
+                                            </select>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" value="Rezervisi" id="buttonRezervisi" onclick="rezervisi(3)"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><img src="Resursi/Slike/jahorina.jpg" id="jahorina"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hotel "Jahorina"</td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td>
+                                            Cena:
+                                            <input type="text" value="5000.00" disabled size="3" name="cena">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                       
+                                        <td>
+                                            Kolicina:
+                                            <select name="kolicina">
+                                                <option>Odaberite tip sobe</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+
+                                            </select>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><input type="button" value="Rezervisi" id="buttonRezervisi" onclick="rezervisi(4)"/></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+
+            <div id="footer">
+                <p>Copyright&copy;  &nbsp;februar 2018.</p>
+            </div>
+        </div>
+    </body>
+</html>
