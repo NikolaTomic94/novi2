@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Rezervacija</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="Rezervacija.css"/>
+        <script>
+            function odlazak(){
+                
+                var datum = new Date().getTime() + document.forma.nocenja.value*24*60*60*1000;
+                var noviDatum = new Date(datum);
+                dan = noviDatum.getDate();
+                mesec = noviDatum.getMonth()+1;
+                godina = noviDatum.getFullYear();
+                document.forma.odlazak1.value = dan+"."+mesec+"."+godina+".";
+            }
+            
+            function placanje(){
+                if(!document.forma.usloviKoriscenja.checked){
+                    alert("Niste saglasni sa uslovima koriscenja");
+                }
+                else{
+                    if(document.forma.nocenja.value=="Izaberite broj nocenja"){
+                        alert("Morate izabrati broj nocenja");
+                    }
+                    else{
+                        if(!document.getElementById("visa").checked  && !document.getElementById("master").checked){
+                            alert("Nije cekirana kartica");//ovde stoji && zato sto kada oba nisu cekirana on izbacuje alert, a kod || kada jedno nije cekirano izbacuje alert sto znaci da bi morali obadva da odaberemo, a ne samo jednu karticu sto je potrebno.
+                        }
+                        else {
+                            var pattern = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+                            var brojKartice = document.forma.brojKartice.value;
+                            if(!pattern.test(brojKartice)){
+                                alert("Unos kartice nije ok!");
+                            }
+                            else{
+                                if(!document.forma.ime.value){
+                                    alert("Morate uneti ime");
+                                }
+                                else{
+                                    if(!document.forma.prezime.value){
+                                        alert("Morate uneti prezime");
+                                    }
+                                    else{
+                                        if(!document.forma.email.value){
+                                            alert("Morate uneti mejl");
+                                        } 
+                                        else{
+                                            var iznos = document.cookie.split(' ')[0].split('=')[1];
+                                            var tipSobe = document.cookie.split(' ')[1].split('=')[1];
+                                            alert("Placanje se procesira: Iznos vaseg aranzmana je " + parseInt(iznos)*parseInt(tipSobe)*parseInt(document.forma.nocenja.value) +" RSD");
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <div id="tur">
+                    <img src="Resursi/Slike/tur.jpg" id="srbija"/>
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li><a href="#">Gradovi</a></li>
+                        <li><a href="#">Sela</a></li>
+                        <li><a href="#">Banje</a></li>
+                        <li><a href="index.html">Planinski centri</a></li>
+                        <li><a href="Rezervacija.html">Rezervacija</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="center">
+                <div id="drina">
+                    <img src="Resursi/Slike/kucica.jpg" id="kucica">
+                </div>
+                <form name="forma">
+                    <table id="tabela2"  align="right">
+                        <tr>
+                            <td>
+                                Tip sobe:
+                                <input type="text" name="tip" disabled>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Za uplatu(po danu):
+                                <input type="text" name="zaUplatu" disabled>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Dolazak:
+                                <input type="text" name="datum" disabled>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Broj nocenja:
+                                <select onchange="odlazak()" name="nocenja">
+                                    <option>Odaberite broj nocenja</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>5</option>
+                                    <option>7</option>
+                                    <option>10</option>
+                                    <option>14</option>
+                                </select>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Odlazak:
+                                <input type="text" name="odlazak1" disabled>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Ime:
+                                <input type="text" name="ime" placeholder="Unseite svoje ime">
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Prezime:
+                                <input type="text" name="prezime" placeholder="Unesite svoje prezime">
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Mejl adresa:
+                                <input type="email" name="email" placeholder="Unesite e-mail adresu">
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Vasa kartica:<br>
+                                <input type="radio" name="kartica" value="Visa" id="visa">Visa
+                                <input type="radio" name="kartica" value="MasterCard" id="master">MasterCard
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                Broj kartice:
+                                <input type="text" name="brojKartice" placeholder="YYYY-YYYY-YYYY-YYYY" size="22">
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>   
+                                <input type="checkbox" name="usloviKoriscenja">Prihvatam uslove koriscenja
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                
+                                <input type="button" value="Plati" id="buttonRezervisi" onclick="placanje()">
+                            </td> 
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div id="footer">
+                 <p>Copyright&copy;  &nbsp;februar 2018.</p>
+            </div>
+        </div>
+        
+          <script>
+            
+            var iznos = document.cookie.split(' ')[0].split('=')[1];
+            var tipSobe = document.cookie.split(' ')[1].split('=')[1];
+            document.forma.tip.value = tipSobe;
+            document.forma.zaUplatu.value = iznos;
+            dan = new Date().getDate();
+            mesec = new Date().getMonth()+1;
+            godina = new Date().getFullYear();
+            document.forma.datum.value = dan+"."+mesec+"."+godina+".";
+        </script>
+    
+        
+    </body>
+    
+</html>
